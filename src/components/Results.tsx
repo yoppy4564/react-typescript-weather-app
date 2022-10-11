@@ -1,8 +1,19 @@
 
+type resultsPropsType = {
+    results: {
+        country: string;
+        cityName: string;
+        temperature: string;
+        conditionText: string;
+        icon: string;
+    }
+}
 
-const Result = () => {
+const Result = (props: resultsPropsType) => {
     return(
-        <h1>気象データ</h1>
+        <div>
+            {props.results.country && <div>{props.results.country}</div>}
+        </div>
     );
 };
 

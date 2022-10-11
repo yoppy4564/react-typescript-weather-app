@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Title from "./components/Title";
 import Form from "./components/Form";
 import Results from "./components/Results";
@@ -21,9 +21,9 @@ function App() {
       conditionText: "",
       icon: ""
     });
-  const getWeather =(e: any) => {
+  const getWeather =(e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      fetch("https://api.weatherapi.com/v1/current.json?key=3ac146bf3199471dbc5143632221010&q=London&aqi=no")
+      fetch(`https://api.weatherapi.com/v1/current.json?key=3ac146bf3199471dbc5143632221010&q=${city}&aqi=no`)
           .then(res => res.json())
           .then(data => {
             setResults({
@@ -36,10 +36,12 @@ function App() {
           })
   };
   return (
-    <div className="App">
-      <Title />
-      <Form setCity={setCity} getWeather={getWeather}/>
-      <Results results = {results}/>
+    <div className="wrapper">
+      <div className="container">
+        <Title />
+        <Form setCity={setCity} getWeather={getWeather}/>
+        <Results results = {results}/>
+      </div>
     </div>
   );
 }

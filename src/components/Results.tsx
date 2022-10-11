@@ -9,23 +9,24 @@ type resultsPropsType = {
     }
 }
 
-const Result = (props: resultsPropsType) => {
+const Result = ({ results }: resultsPropsType) => {
+    const { country, cityName, temperature, conditionText, icon } = results; 
     return(
-        <div>
-            {props.results.country && 
-                <div className="results-country">{props.results.country}</div>
+        <>
+            {country && 
+                <div className="results-country">{country}</div>
             }
-            {props.results.cityName && 
-                <div className="results-city">{props.results.cityName}</div>
+            {cityName && 
+                <div className="results-city">{cityName}</div>
             }
-            {props.results.temperature && 
-                <div className="results-temp">{props.results.temperature}<span>℃</span></div>}
-            {props.results.conditionText && 
+            {temperature && 
+                <div className="results-temp">{temperature}<span>℃</span></div>}
+            {conditionText && 
                 <div className="results-condition">
-                    <img src={props.results.icon} alt="icon"/>
-                    <span>{props.results.conditionText}</span>
+                    <img src={icon} alt="icon"/>
+                    <span>{conditionText}</span>
                 </div>}
-        </div>
+        </>
     );
 };
 
